@@ -7,6 +7,7 @@ body {
     background-color: #fafafa;
     animation: fadeIn 0.6s ease-in-out;
     letter-spacing: 0.05em;
+    overflow-x: hidden; /* ★サイドバーメニューがはみ出さないように */
 }
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
@@ -16,21 +17,21 @@ body {
 /* ヘッダー＆メニュー (KTMG風のカプセルボタン) */
 header {
     background-color: rgba(255, 255, 255, 0.98);
-    height: 80px; /* ★ヘッダーの高さを固定し、ロゴを配置しやすくする */
+    height: 80px;
     padding: 0 5%;
     box-shadow: 0 2px 15px rgba(0,0,0,0.06);
     position: sticky;
     top: 0;
-    z-index: 100; /* ロゴよりは下 */
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* ★ここが修正ポイント！ ロゴをヘッダーからはみ出るほど大きく配置 */
+/* ロゴをヘッダーからはみ出るほど大きく配置 */
 .logo {
     position: relative;
-    height: 100%; /* ヘッダーと同じ高さに */
+    height: 100%;
 }
 .logo a {
     text-decoration: none;
@@ -38,16 +39,17 @@ header {
     height: 100%;
 }
 .logo img {
-    width: 220px; /* ★KTMGさんのように、大きく存在感のある幅に設定 */
+    width: 220px;
     height: auto;
     display: block;
-    position: absolute; /* ヘッダーの白地から浮かせる */
-    top: -20px; /* ★ヘッダーの上からはみ出すように */
+    position: absolute;
+    top: -20px;
     left: 0;
-    z-index: 110; /* ヘッダーの白地より上に */
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* 影をつけて看板画像に重なっても見やすく */
+    z-index: 110;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
+/* PC用ナビゲーションメニュー (768px以上で表示) */
 .nav-menu {
     list-style: none;
     display: flex;
@@ -73,31 +75,36 @@ header {
     background-color: #0056b3;
 }
 
+/* ★PCではハンバーガーボタンを非表示 */
+.burger-btn {
+    display: none;
+}
+
 /* 横幅100%のメインビジュアル */
 .main-visual {
     width: 100%;
-    margin-top: 80px;
+    margin-top: 80px; 
     background-color: #000;
-    position: relative; /* ★この1行が超重要！中の文字の基準点になります */
+    position: relative;
     z-index: 90;
 }
 .main-visual img {
     width: 100%;
     height: auto;
     display: block;
-    opacity: 0.85; /* ★画像を少しだけ暗くして、上の文字を際立たせるテクニック */
+    opacity: 0.85;
 }
 
-/* ★新規追加：画像の上に載るキャッチコピーの設定 */
+/* 画像の上に載るキャッチコピーの設定 */
 .catchphrase {
-    position: absolute; /* 画像の上に文字を浮かせる */
-    top: 50%; /* 上下の中央 */
-    left: 50%; /* 左右の中央 */
-    transform: translate(-50%, -50%); /* ど真ん中にピッタリ合わせる */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     width: 90%;
-    color: #ffffff; /* 文字色は白 */
-    text-shadow: 0 2px 15px rgba(0,0,0,0.8); /* ★文字に濃い影をつけて、背景が明るくても読めるようにする */
+    color: #ffffff;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.8);
 }
 .catchphrase h2 {
     font-size: 2.8rem;
@@ -110,13 +117,7 @@ header {
     margin: 0;
     letter-spacing: 0.15em;
     font-weight: bold;
-    color: #e0eafc; /* サブタイトルは少しだけ青みがかった白でおしゃれに */
-}
-
-/* スマホ用のサイズ調整 */
-@media (max-width: 600px) {
-    .catchphrase h2 { font-size: 1.8rem; }
-    .catchphrase p { font-size: 0.9rem; }
+    color: #e0eafc;
 }
 
 /* メインコンテンツ枠 */
@@ -135,7 +136,7 @@ h2.section-title {
     margin-bottom: 30px;
 }
 
-/* しろもふファクトリー風のお知らせリスト */
+/* お知らせリスト */
 .news-list {
     list-style: none;
     padding: 0;
@@ -173,15 +174,15 @@ h2.section-title {
 
 /* フッター */
 footer {
-    background-color: #11151c; /* 以前より深く、高級感のあるダークカラー（ほぼ黒） */
-    color: #8a94a5; /* 真っ白ではなく、洗練されたシルバーグレー */
+    background-color: #11151c;
+    color: #8a94a5;
     text-align: center;
-    padding: 50px 20px; /* 上下の空間を広げて、ゆったりとしたプロ感を演出 */
-    font-size: 0.8rem; /* 文字を少し小さくしてスタイリッシュに */
-    letter-spacing: 0.15em; /* ★重要：文字と文字の間隔を広くして「おしゃれ感」を出す */
+    padding: 50px 20px;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
     margin-top: 80px;
-    border-top: 1px solid #2a3441; /* 上部にさりげない極細のラインを引いて引き締める */
-    font-family: 'Helvetica Neue', Arial, sans-serif; /* コピーライトの英語が綺麗に見えるフォントを指定 */
+    border-top: 1px solid #2a3441;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* 会社概要テーブル (company.html用) */
@@ -202,4 +203,134 @@ footer {
     background-color: #f8fafc;
     color: #4a5568;
     font-weight: bold;
+}
+
+/* -------------------------------------------------- */
+/* ★スマホ・タブレット用のサイズ調整 (767px以下) */
+/* -------------------------------------------------- */
+@media (max-width: 767px) {
+    /* ヘッダーを少しスリムに */
+    header {
+        height: 60px;
+        padding: 0 3%;
+    }
+    
+    /* ロゴをスマホに合わせて縮小し、位置を調整 */
+    .logo {
+        width: 100px;
+    }
+    .logo img {
+        width: 120px;
+        top: 0px; /* 上のはみ出しをなくしてスッキリ収める */
+    }
+
+    /* -------------------------------------------------- */
+    /* ★ハンバーガーメニューの実装 (しろもふファクトリー風) */
+    /* -------------------------------------------------- */
+
+    /* ①ハンバーガーボタンを表示・スタイル設定 */
+    .burger-btn {
+        display: block; /* 表示 */
+        position: relative;
+        z-index: 130; /* メニューより上に配置 */
+        width: 30px;
+        height: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+    .burger-btn span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #333; /* 三本線の色 */
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+    }
+    .burger-btn span:nth-child(1) { top: 0; }
+    .burger-btn span:nth-child(2) { top: 11px; }
+    .burger-btn span:nth-child(3) { bottom: 0; }
+
+    /* ハンバーガーボタンをクリックした時の「X」印のアニメーション */
+    .burger-btn.is-open span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+    .burger-btn.is-open span:nth-child(2) {
+        opacity: 0;
+    }
+    .burger-btn.is-open span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+    }
+
+    /* ②スマホ用ナビゲーションメニュー (サイドバー形式) */
+    .nav-menu {
+        display: flex; /* Flexboxに変更 */
+        flex-direction: column; /* 縦並びに */
+        justify-content: center; /* 上下中央寄せ */
+        align-items: center; /* 左右中央寄せ */
+        position: fixed; /* 画面に固定 */
+        top: 0;
+        right: -100%; /* 初期状態は画面外（右側） */
+        width: 100%; /* 画面全体を覆う */
+        height: 100vh; /* 画面全体の高さ */
+        background-color: rgba(255, 255, 255, 0.98); /* 背景色 */
+        z-index: 120; /* ロゴよりは下、ヘッダーよりは上 */
+        transition: right 0.4s ease-in-out; /* スライドアニメーション */
+        gap: 0; /* PC用のgapを消す */
+    }
+
+    /* メニューが開いている時のスタイル */
+    .nav-menu.is-open {
+        right: 0; /* 画面内にスライド */
+    }
+
+    /* スマホ用メニュー内のリンクスタイル */
+    .nav-menu li {
+        width: 100%; /* 横幅いっぱい */
+        text-align: center;
+        border-bottom: 1px solid #eee; /* 区切り線 */
+    }
+    .nav-menu li:last-child {
+        border-bottom: none; /* 最後の区切り線を消す */
+    }
+    .nav-menu a {
+        display: block; /* リンクをブロック要素にしてクリックエリアを広げる */
+        width: 100%;
+        color: #333;
+        font-weight: bold;
+        font-size: 1.1rem; /* 文字をPCより少し大きく */
+        padding: 25px 0; /* 上下余白をゆったりと */
+        border-radius: 0; /* PC用の角丸を消す */
+        background: none; /* PC用の背景を消す */
+    }
+    .nav-menu a:hover {
+        color: #0056b3;
+        background-color: #f8fafc;
+    }
+    /* 選択されているメニューのハイライト */
+    .nav-menu a.active {
+        color: #fff !important;
+        background-color: #0056b3;
+    }
+
+    /* bodyにクラスが付与された時にスクロールを無効化（メニュー展開時） */
+    body.is-open {
+        overflow: hidden;
+    }
+
+    /* -------------------------------------------------- */
+
+    /* メインビジュアルとキャッチコピーのスマホ調整 */
+    .main-visual {
+        margin-top: 60px; /* ヘッダーの高さに合わせる */
+    }
+    .catchphrase h2 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+    .catchphrase p {
+        font-size: 0.8rem;
+    }
 }
