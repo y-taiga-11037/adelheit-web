@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 /* 全体の基本設定 */
 body {
     font-family: 'Noto Sans JP', sans-serif;
@@ -257,6 +258,66 @@ footer {
     display: block;
 }
 
+/* --- 【全画面共通】ドットアニメーションと背景の動き --- */
+
+.pixel-brand-section {
+    /* 背景がゆっくり変わるアニメーションを全体に適用 */
+    background: linear-gradient(135deg, #ffffff, #f0f4f8, #e6e6fa, #f0f4f8);
+    background-size: 400% 400%;
+    animation: gradient-bg 15s ease infinite;
+
+    padding: 100px 20px;
+    text-align: center;
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.pixel-text {
+    display: inline-block;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 4rem; /* PCでのサイズ */
+    color: #0000ff; /* 原色の青 */
+    position: relative;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    /* steps(8) で Adelheit をカクカク出す */
+    animation:
+        typing-adel 1.5s steps(8, end) forwards,
+        glitch-vivid 1.5s step-end;
+}
+
+.pixel-sub {
+    font-family: 'DotGothic16', sans-serif;
+    color: #ff00ff; /* 原色のマゼンタ */
+    margin-top: 15px;
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: fadeIn-vivid 0.3s ease forwards 1.8s;
+}
+
+/* --- アニメーション共通定義 --- */
+@keyframes gradient-bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes typing-adel {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes glitch-vivid {
+    0%, 100% { text-shadow: none; transform: translate(0); }
+    20% { text-shadow: 4px 0 #ff0000, -4px 0 #00ff00; transform: translate(3px, -2px); }
+    40% { text-shadow: -4px 0 #ff0000, 4px 0 #00ff00; transform: translate(-3px, 2px); }
+}
+@keyframes fadeIn-vivid {
+    to { opacity: 1; }
+}
+
 /* -------------------------------------------------- */
 /* ★スマホ・タブレット用のサイズ調整 (767px以下) */
 /* -------------------------------------------------- */
@@ -408,4 +469,76 @@ footer {
     .catchphrase p {
         font-size: 0.8rem;
     }
+/* --- 【背景変化・静止ドットロゴ版】 --- */
+
+.pixel-brand-section {
+    /* 背景がゆっくり変わるアニメーション */
+    background: linear-gradient(135deg, #ffffff, #f0f4f8, #e6e6fa, #f0f4f8);
+    background-size: 400% 400%;
+    animation: gradient-bg 15s ease infinite;
+
+    padding: 100px 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.pixel-text {
+    display: inline-block;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 4rem;
+    color: #0000ff; /* 原色の青 */
+    position: relative;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    /* steps(8) でカクカク打ち出し。タイピング中だけグリッチを混ぜる */
+    animation:
+        typing-adel 1.5s steps(8, end) forwards,
+        glitch-vivid 1.5s step-end; /* タイピングと同じ時間だけ揺らす */
+}
+
+.pixel-sub {
+    font-family: 'DotGothic16', sans-serif;
+    color: #ff00ff; /* 原色のマゼンタ */
+    margin-top: 15px;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: fadeIn-vivid 0.3s ease forwards 1.8s;
+}
+
+/* --- アニメーションの定義 --- */
+
+/* 背景がゆっくり動く動き */
+@keyframes gradient-bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 8文字タイピング */
+@keyframes typing-adel {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* タイピング中のみ発生するノイズ（1.5秒で止まるように設定） */
+@keyframes glitch-vivid {
+    0%, 100% { text-shadow: none; transform: translate(0); }
+    20% { text-shadow: 4px 0 #ff0000, -4px 0 #00ff00; transform: translate(3px, -2px); }
+    40% { text-shadow: -4px 0 #ff0000, 4px 0 #00ff00; transform: translate(-3px, 2px); }
+    60% { text-shadow: 4px 0 #ff0000, -4px 0 #00ff00; transform: translate(2px, -1px); }
+}
+
+@keyframes fadeIn-vivid {
+    to { opacity: 1; }
+}
+
+/* スマホ用調整 */
+@media (max-width: 767px) {
+    .pixel-text {
+        font-size: 2.2rem;
+    }
+}
 }
