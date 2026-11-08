@@ -2,19 +2,69 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>事業内容 | 合同会社アーデルハイト (Adelheit LLC)</title>
     <meta name="description" content="合同会社アーデルハイトの開発タイトル一覧。手続き型生成アルゴリズムを搭載したスマートフォン向けアクションゲーム『Ping-pong Dash』を開発中。">
+    <link rel="canonical" href="https://adelheit-studio.com/business.html">
+    <meta name="theme-color" content="#fafafa">
     <meta property="og:title" content="事業内容 | 合同会社アーデルハイト (Adelheit LLC)">
     <meta property="og:description" content="手続き型生成アルゴリズムを搭載したスマートフォン向けアクションゲーム『Ping-pong Dash』ほか、開発プロジェクトの紹介。">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://adelheit-studio.com/business.html">
+    <meta property="og:site_name" content="合同会社アーデルハイト">
+    <meta property="og:locale" content="ja_JP">
     <meta property="og:image" content="https://adelheit-studio.com/94576.jpg">
+    <meta property="og:image:width" content="785">
+    <meta property="og:image:height" content="947">
+    <meta property="og:image:alt" content="Ping-pong Dash キービジュアル">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="twitter:image" content="https://adelheit-studio.com/94576.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; }
+            @media (max-width: 767px) {
+                .burger-btn { display: none !important; }
+                header {
+                    position: relative;
+                    height: auto;
+                    flex-wrap: wrap;
+                    padding-top: 126px;
+                }
+                .logo {
+                    position: absolute;
+                    top: 0;
+                    left: 3%;
+                    height: auto;
+                }
+                .global-nav {
+                    width: 100%;
+                    margin-left: 0;
+                }
+                .nav-menu {
+                    position: static;
+                    visibility: visible;
+                    opacity: 1;
+                    transform: none;
+                    pointer-events: auto;
+                    width: 100%;
+                    background: #fff;
+                    box-shadow: none;
+                    border-radius: 0;
+                    padding: 0;
+                }
+                .nav-menu a {
+                    padding: 10px 0;
+                }
+            }
+        </style>
+    </noscript>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWGNFN9YBJ"></script>
     <script>
@@ -23,93 +73,136 @@
     gtag('js', new Date());
     gtag('config', 'G-EWGNFN9YBJ');
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Ping-pong Dash",
+        "description": "手続き型生成（Procedural Generation）アルゴリズムを用いたコアシステムを搭載したスマートフォン向けアクションゲーム。",
+        "genre": "ハイスピードアクション",
+        "gamePlatform": ["iOS", "Android"],
+        "operatingSystem": "iOS, Android",
+        "applicationCategory": "Game",
+        "inLanguage": "ja",
+        "image": "https://adelheit-studio.com/94576.jpg",
+        "publisher": {
+            "@type": "Organization",
+            "name": "合同会社アーデルハイト",
+            "url": "https://adelheit-studio.com/"
+        }
+    }
+    </script>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">本文へスキップ</a>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
     <header>
         <div class="logo">
             <a href="/">
-                <img src="logo.png" alt="合同会社アーデルハイト">
+                <picture>
+                    <source srcset="logo.webp" type="image/webp">
+                    <img src="logo.png" alt="合同会社アーデルハイト" width="595" height="593">
+                </picture>
             </a>
         </div>
 
-        <button class="burger-btn" aria-label="メニューを開く">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="burger-btn" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </button>
 
-        <ul class="nav-menu">
-            <li><a href="/">ホーム</a></li>
-            <li><a href="business.html" class="active">事業内容</a></li>
-            <li><a href="news.html">お知らせ</a></li>
-            <li><a href="company.html">会社情報</a></li>
-        </ul>
+        <nav class="global-nav" aria-label="メインナビゲーション">
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/">ホーム</a></li>
+                <li><a href="business.html" class="active" aria-current="page">事業内容</a></li>
+                <li><a href="news.html">お知らせ</a></li>
+                <li><a href="company.html">会社情報</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-backdrop" aria-hidden="true"></div>
     </header>
 
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-en">GAMES &amp; PROJECTS</span>
-            <h2 class="section-title">Games</h2>
-        </div>
-
-        <div class="game-card reveal">
-            <div class="game-card-visual">
-                <img src="94576.jpg" alt="Ping-pong Dash キービジュアル">
+    <main>
+        <div class="container" id="main-content">
+            <div class="section-header reveal">
+                <span class="section-en">GAMES &amp; PROJECTS</span>
+                <h1 class="section-title">Games<span class="visually-hidden">（事業内容・ゲーム開発）</span></h1>
             </div>
-            <div class="game-card-content">
-                <div style="margin-bottom: 12px;">
-                    <span class="status-pill status-pill-light"><span class="pulse-dot"></span>開発中 / Prototype</span>
-                </div>
-                <div class="game-title-row">
-                    <h3>Ping-pong Dash</h3>
-                    <span class="game-sub-en">PROCEDURAL ACTION GAME</span>
-                </div>
-                <p>手続き型生成（Procedural Generation）アルゴリズムを用いたコアシステムを搭載したスマートフォン向けアクションゲーム。<br>現在はユーザーインターフェースおよびステージバリエーションを開発中のプロトタイプ段階にあり、2026年度中のリリースに向けて鋭意制作中です。</p>
 
-                <div class="game-specs">
-                    <div class="spec-item">
-                        <span class="spec-label">ジャンル</span>
-                        <span class="spec-value">ハイスピードアクション</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">対応プラットフォーム</span>
-                        <span class="spec-value">iOS / Android</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">リリース予定</span>
-                        <span class="spec-value">2026年度予定</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">価格</span>
-                        <span class="spec-value">未定</span>
-                    </div>
+            <div class="game-card reveal">
+                <div class="game-card-visual">
+                    <picture>
+                        <source srcset="94576.webp" type="image/webp">
+                        <img src="94576.jpg" alt="Ping-pong Dash キービジュアル" width="785" height="947" loading="lazy" decoding="async">
+                    </picture>
                 </div>
-
-                <div class="dev-progress">
-                    <div class="dev-progress-header">
-                        <span>DEVELOPMENT STATUS : PROTOTYPE PHASE</span>
-                        <span class="dev-percent">45%</span>
+                <div class="game-card-content">
+                    <div style="margin-bottom: 12px;">
+                        <span class="status-pill status-pill-light"><span class="pulse-dot" aria-hidden="true"></span>開発中 / Prototype</span>
                     </div>
-                    <div class="dev-progress-bar">
-                        <div class="dev-progress-fill" style="width: 45%;"></div>
+                    <div class="game-title-row">
+                        <h2>Ping-pong Dash</h2>
+                        <span class="game-sub-en">PROCEDURAL ACTION GAME</span>
+                    </div>
+                    <p>手続き型生成（Procedural Generation）アルゴリズムを用いたコアシステムを搭載したスマートフォン向けアクションゲーム。<br>現在はユーザーインターフェースおよびステージバリエーションを開発中のプロトタイプ段階にあり、2026年度中のリリースに向けて鋭意制作中です。</p>
+
+                    <div class="game-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">ジャンル</span>
+                            <span class="spec-value">ハイスピードアクション</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">対応プラットフォーム</span>
+                            <span class="spec-value">iOS / Android</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">リリース予定</span>
+                            <span class="spec-value">2026年度予定</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">価格</span>
+                            <span class="spec-value">未定</span>
+                        </div>
+                    </div>
+
+                    <div class="dev-progress">
+                        <div class="dev-progress-header">
+                            <span>DEVELOPMENT STATUS : PROTOTYPE PHASE</span>
+                            <span class="dev-percent">45%</span>
+                        </div>
+                        <div class="dev-progress-bar" role="progressbar" aria-label="開発進捗" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                            <div class="dev-progress-fill" style="width: 45%;" aria-hidden="true"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <footer>
         <div class="footer-inner">
             <div class="footer-brand">Adelheit LLC</div>
-            <ul class="footer-nav">
-                <li><a href="/">ホーム</a></li>
-                <li><a href="business.html">事業内容</a></li>
-                <li><a href="news.html">お知らせ</a></li>
-                <li><a href="company.html">会社情報</a></li>
-            </ul>
+            <nav aria-label="フッターナビゲーション">
+                <ul class="footer-nav">
+                    <li><a href="/">ホーム</a></li>
+                    <li><a href="business.html">事業内容</a></li>
+                    <li><a href="news.html">お知らせ</a></li>
+                    <li><a href="company.html">会社情報</a></li>
+                </ul>
+            </nav>
             <div class="footer-copy">&copy; 2026 Adelheit LLC. All Rights Reserved.</div>
         </div>
     </footer>
+
+    <button class="back-to-top" type="button" aria-label="ページの先頭へ戻る">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="m5 12 7-7 7 7"></path>
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>

@@ -1,7 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
-/* ★追加：スマホでの意図しないダブルタップズームを防止 */
+/* スマホでの意図しないダブルタップズームを防止 */
 a, button, input, select, textarea {
     touch-action: manipulation;
+}
+
+/* スクリーンリーダー専用テキスト */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* キーボード操作用のスキップリンク */
+.skip-link {
+    position: fixed;
+    top: -100px;
+    left: 16px;
+    z-index: 300;
+    padding: 12px 22px;
+    background: #11151c;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: top 0.2s ease;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+/* キーボードフォーカスを明確に */
+:focus-visible {
+    outline: 3px solid #d600b8;
+    outline-offset: 3px;
+}
+
+::selection {
+    background: #0000ff;
+    color: #fff;
 }
 /* 全体の基本設定 */
 body {
@@ -24,6 +66,11 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* コンテンツが短いページでもフッターを画面下部に固定する */
+main {
+    flex: 1 0 auto;
+}
+
 /* ヘッダー＆メニュー */
 header {
     background-color: #fafafa;
@@ -34,8 +81,18 @@ header {
     top: 0;
     z-index: 100;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+}
+
+/* ナビゲーションを右端へ（スマホではハンバーガー側で調整） */
+.global-nav {
+    margin-left: auto;
+}
+
+/* ナビゲーション開閉時の背景 */
+.nav-backdrop {
+    display: none;
 }
 
 /* ★修正ポイント！ ロゴを特大サイズにしてはみ出させる */
@@ -45,6 +102,10 @@ header {
 }
 .logo a {
     text-decoration: none;
+    display: block;
+    height: 100%;
+}
+.logo picture {
     display: block;
     height: 100%;
 }
@@ -59,6 +120,15 @@ header {
     z-index: 110;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     transition: all 0.23s ease-in-out;
+}
+/* PCでロゴにカーソルを乗せた時の軽いグリッチ演出 */
+@media (hover: hover) {
+    .logo a:hover img {
+        filter:
+            drop-shadow(0 2px 4px rgba(0,0,0,0.1))
+            drop-shadow(2px 0 rgba(255, 0, 80, 0.45))
+            drop-shadow(-2px 0 rgba(0, 200, 255, 0.45));
+    }
 }
 
 /* ★ここを新規追加：スクロールした時のPC版ロゴのスタイル */
@@ -106,6 +176,9 @@ header.is-scrolled .logo img {
     position: relative;
     z-index: 90;
 }
+.main-visual picture {
+    display: block;
+}
 .main-visual img {
     width: 100%;
     height: auto;
@@ -148,12 +221,12 @@ header.is-scrolled .logo img {
 }
 
 /* 見出し */
-h2.section-title {
+.section-title {
     font-size: 1.8rem;
     color: #2c3e50;
     border-bottom: 2px solid #0056b3;
     padding-bottom: 10px;
-    margin-bottom: 30px;
+    margin: 0.83em 0 30px;
 }
 
 /* お知らせリスト */
@@ -203,7 +276,7 @@ h2.section-title {
 .game-card-content {
     padding: 30px;
 }
-.game-card-content h3 {
+.game-card-content h2 {
     font-size: 1.5rem;
     color: #2c3e50;
 }
@@ -320,11 +393,6 @@ footer {
     from { width: 0 }
     to { width: 100% }
 }
-@keyframes glitch-vivid {
-    0%, 100% { text-shadow: none; transform: translate(0); }
-    20% { text-shadow: 4px 0 #ff0000, -4px 0 #00ff00; transform: translate(3px, -2px); }
-    40% { text-shadow: -4px 0 #ff0000, 4px 0 #00ff00; transform: translate(-3px, 2px); }
-}
 @keyframes fadeIn-vivid {
     to { opacity: 1; }
 }
@@ -361,10 +429,15 @@ footer {
         z-index: 130;
         width: 30px;
         height: 24px;
+        margin-left: auto;
         background: none;
         border: none;
         cursor: pointer;
         padding: 0;
+    }
+
+    .global-nav {
+        margin-left: 0;
     }
     .burger-btn span {
         display: block;
@@ -391,7 +464,7 @@ footer {
 
     /* ②スマホ用ナビゲーションメニュー (白のドロップダウンボックス形式) */
     .nav-menu {
-        display: none; /* 初期状態は非表示 */
+        display: flex;
         flex-direction: column;
         position: absolute; /* ヘッダーを基準に絶対配置 */
         top: 65px; /* ヘッダーの下に少し間をあける */
@@ -403,11 +476,41 @@ footer {
         border-radius: 8px; /* 角丸 */
         padding: 10px 0;
         gap: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
     }
 
     /* ハンバーガーボタンが押されて is-open が付いた時 */
     .nav-menu.is-open {
-        display: flex;
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* メニューを開いた時の背景オーバーレイ */
+    .nav-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 115;
+        background: rgba(17, 21, 28, 0.38);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    body.is-open .nav-backdrop {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        cursor: pointer;
     }
 
     .nav-menu li {
@@ -418,6 +521,7 @@ footer {
 
     .nav-menu a {
         display: block;
+        box-sizing: border-box;
         width: 100%;
         color: #0056b3; /* しろもふファクトリー風の青色テキスト */
         font-weight: bold;
@@ -432,23 +536,42 @@ footer {
         background-color: #f8fafc;
     }
 
+    .nav-menu a:focus-visible {
+        outline-offset: -3px;
+    }
+
     /* 選択されているメニューのハイライト（青文字+薄い青背景） */
     .nav-menu a.active {
         color: #0056b3 !important;
         background-color: #f0f4f8; /* 控えめな背景色にして箱に馴染ませる */
     }
 
-    /* ボックス型メニューなので、背景のスクロールは止めない */
-    body.is-open {
-        overflow: auto;
-    }
-
+    /* メニュー展開中は背景のスクロールを止める */
     body.is-open {
         overflow: hidden;
     }
 
     .main-visual {
         margin-top: 60px; /* スマホ版も白い帯を削除 */
+        height: 320px;
+    }
+    .main-visual picture {
+        display: block;
+        height: 100%;
+    }
+    .main-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 65% 35%;
+    }
+    .catchphrase {
+        top: auto;
+        bottom: 22px;
+        left: 20px;
+        transform: none;
+        width: calc(100% - 40px);
+        text-align: left;
     }
 
     /* お知らせリストのスマホレイアウト (縦積み) */
@@ -494,6 +617,7 @@ footer {
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 /* --- ① ヘッダーのすりガラス化 --- */
@@ -522,6 +646,26 @@ header.is-scrolled {
         radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.45) 100%),
         linear-gradient(180deg, rgba(10, 20, 50, 0.15) 0%, rgba(10, 20, 50, 0.55) 100%);
     pointer-events: none;
+}
+
+/* メインビジュアル・ゲーム画像に薄いCRT走査線を重ねる */
+.main-visual::after,
+.pickup-image-wrap::after,
+.game-card-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.18) 0,
+        rgba(0, 0, 0, 0.18) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity: 0.18;
+    mix-blend-mode: multiply;
 }
 .catchphrase {
     z-index: 2;
@@ -586,10 +730,10 @@ a.pixel-sub {
     margin-top: 20px;
     padding: 10px 24px;
     border-radius: 999px;
-    color: #d600b8;
+    color: #c200a5;
     background: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(214, 0, 184, 0.35);
-    box-shadow: 0 4px 16px rgba(214, 0, 184, 0.12);
+    border: 1px solid rgba(194, 0, 165, 0.35);
+    box-shadow: 0 4px 16px rgba(194, 0, 165, 0.12);
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     animation:
@@ -638,15 +782,15 @@ a.pixel-sub:hover {
     font-family: 'DotGothic16', sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.3em;
-    color: #d600b8;
+    color: #c200a5;
     margin-bottom: 4px;
 }
-.section-header h2.section-title {
+.section-header .section-title {
     border-bottom: none;
     position: relative;
     padding-bottom: 14px;
 }
-.section-header h2.section-title::after {
+.section-header .section-title::after {
     content: '';
     position: absolute;
     left: 0;
@@ -683,8 +827,13 @@ a.pixel-sub:hover {
     text-decoration: none;
 }
 .pickup-image-wrap {
+    position: relative;
     overflow: hidden;
     background: #000;
+}
+.pickup-image-wrap picture,
+.game-card-visual picture {
+    display: block;
 }
 .pickup-banner img {
     transition: transform 0.6s ease;
@@ -865,7 +1014,7 @@ a.news-title {
     gap: 12px;
     margin-bottom: 8px;
 }
-.game-title-row h3 {
+.game-title-row h2 {
     margin: 0;
     font-size: 1.8rem;
     font-weight: 900;
@@ -874,7 +1023,7 @@ a.news-title {
     font-family: 'DotGothic16', sans-serif;
     font-size: 0.8rem;
     letter-spacing: 0.2em;
-    color: #d600b8;
+    color: #c200a5;
 }
 .game-specs {
     display: grid;
@@ -891,7 +1040,7 @@ a.news-title {
 .spec-label {
     display: block;
     font-size: 0.72rem;
-    color: #8a94a5;
+    color: #5f6b7a;
     margin-bottom: 4px;
 }
 .spec-value {
@@ -988,10 +1137,14 @@ footer {
     .game-specs {
         grid-template-columns: repeat(2, 1fr);
     }
+    .spec-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.02em;
+    }
     .game-card-content {
         padding: 24px 20px 28px;
     }
-    .game-title-row h3 {
+    .game-title-row h2 {
         font-size: 1.4rem;
     }
     .catchphrase-badge {
@@ -1015,8 +1168,272 @@ footer {
     }
 }
 
+/* --- スクロール進捗バー --- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 200;
+    pointer-events: none;
+    background: transparent;
+}
+.scroll-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #0000ff, #d600b8, #ff00ff);
+    box-shadow: 0 0 10px rgba(214, 0, 184, 0.55);
+}
+
+/* --- ページ先頭へ戻るボタン --- */
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 90;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #11151c, #1b2433);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease;
+}
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.back-to-top:hover {
+    box-shadow: 0 0 0 2px rgba(214, 0, 184, 0.45), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.back-to-top svg {
+    width: 22px;
+    height: 22px;
+}
+@media (max-width: 767px) {
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* --- 404 / GAME OVER --- */
+.error-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 110px 20px 80px;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(0, 0, 255, 0.07), transparent 58%),
+        linear-gradient(180deg, #fafafa 0%, #f2f3f8 100%);
+}
+.error-screen {
+    position: relative;
+    width: min(860px, 100%);
+    overflow: hidden;
+    border: 1px solid #2b2b5c;
+    border-radius: 18px;
+    background: #080812;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 255, 0.3),
+        0 30px 80px rgba(0, 0, 40, 0.28),
+        inset 0 0 90px rgba(0, 0, 255, 0.1);
+}
+.error-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.045) 0,
+        rgba(255, 255, 255, 0.045) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+}
+.error-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 48%, rgba(0, 0, 0, 0.55) 100%);
+}
+.error-screen-inner {
+    position: relative;
+    z-index: 2;
+    padding: 64px 40px 52px;
+    text-align: center;
+}
+.error-code {
+    margin: 0 0 18px;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.35em;
+    color: #ff4fd8;
+}
+.error-title {
+    margin: 0;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: clamp(3rem, 9vw, 5.8rem);
+    line-height: 1;
+    letter-spacing: 0.06em;
+    color: #fff;
+    text-shadow:
+        0 0 18px rgba(0, 90, 255, 0.55),
+        3px 0 #ff2ad4,
+        -3px 0 #19e3ff;
+    animation: error-glitch 5s steps(1) infinite;
+}
+@keyframes error-glitch {
+    0%, 92%, 100% {
+        transform: translate(0);
+        text-shadow: 0 0 18px rgba(0, 90, 255, 0.55), 3px 0 #ff2ad4, -3px 0 #19e3ff;
+    }
+    93% {
+        transform: translate(-3px, 1px);
+        text-shadow: -7px 0 #ff2ad4, 7px 0 #19e3ff;
+    }
+    95% {
+        transform: translate(3px, -1px);
+        text-shadow: 7px 0 #ff2ad4, -7px 0 #19e3ff;
+    }
+    97% {
+        transform: translate(-1px, 0);
+        text-shadow: 2px 0 #ff2ad4, -2px 0 #19e3ff;
+    }
+}
+.error-copy {
+    max-width: 540px;
+    margin: 26px auto 0;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #c9d2e3;
+}
+.sp-br {
+    display: none;
+}
+.error-continue {
+    margin: 30px 0 0;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: #8d98ad;
+}
+.error-count {
+    display: inline-block;
+    color: #ffd23f;
+    animation: blink-start 1s steps(1) infinite;
+}
+.error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+}
+.error-btn {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-width: 210px;
+    padding: 13px 28px;
+    border: 2px solid #34345e;
+    border-radius: 8px;
+    background: #101024;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.error-btn:hover {
+    transform: translateY(-2px);
+    border-color: #19e3ff;
+    box-shadow: 0 0 0 1px rgba(25, 227, 255, 0.35), 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+.error-btn-en {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+}
+.error-btn-ja {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: #9aa5b6;
+}
+.error-btn-primary {
+    border-color: transparent;
+    background: linear-gradient(90deg, #0000d0, #b8009b);
+}
+.error-btn-primary:hover {
+    border-color: transparent;
+    box-shadow: 0 0 0 1px rgba(255, 79, 216, 0.5), 0 10px 26px rgba(184, 0, 155, 0.35);
+}
+.error-btn-primary .error-btn-ja {
+    color: rgba(255, 255, 255, 0.88);
+}
+.error-hint {
+    margin: 32px 0 0;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: #5c6579;
+}
+.error-body footer {
+    margin-top: 0;
+}
+
+@media (max-width: 767px) {
+    .error-main {
+        padding: 92px 16px 56px;
+    }
+    .error-screen-inner {
+        padding: 44px 18px 36px;
+    }
+    .error-title {
+        font-size: clamp(2.5rem, 14vw, 4rem);
+    }
+    .error-copy {
+        font-size: 0.88rem;
+    }
+    .sp-br {
+        display: inline;
+    }
+    .error-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .error-btn {
+        width: 100%;
+        min-width: 0;
+    }
+    .error-hint {
+        letter-spacing: 0.1em;
+    }
+}
+
 /* 動きを減らす設定のユーザーにはアニメーションを控える */
 @media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;

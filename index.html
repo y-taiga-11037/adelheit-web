@@ -2,19 +2,69 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>合同会社アーデルハイト | Adelheit LLC</title>
     <meta name="description" content="遊び心を、無限の形に。合同会社アーデルハイト（Adelheit LLC）は、常識を超えるスマートフォンゲームを開発するインディーゲームスタジオです。">
+    <link rel="canonical" href="https://adelheit-studio.com/">
+    <meta name="theme-color" content="#fafafa">
     <meta property="og:title" content="合同会社アーデルハイト | Adelheit LLC">
     <meta property="og:description" content="遊び心を、無限の形に。常識を超えるスマートフォンゲーム開発スタジオ Adelheit LLC 公式サイト。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://adelheit-studio.com/">
+    <meta property="og:site_name" content="合同会社アーデルハイト">
+    <meta property="og:locale" content="ja_JP">
     <meta property="og:image" content="https://adelheit-studio.com/94571.jpg">
+    <meta property="og:image:width" content="1713">
+    <meta property="og:image:height" content="956">
+    <meta property="og:image:alt" content="アーデルハイト メインビジュアル">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="twitter:image" content="https://adelheit-studio.com/94571.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; }
+            @media (max-width: 767px) {
+                .burger-btn { display: none !important; }
+                header {
+                    position: relative;
+                    height: auto;
+                    flex-wrap: wrap;
+                    padding-top: 126px;
+                }
+                .logo {
+                    position: absolute;
+                    top: 0;
+                    left: 3%;
+                    height: auto;
+                }
+                .global-nav {
+                    width: 100%;
+                    margin-left: 0;
+                }
+                .nav-menu {
+                    position: static;
+                    visibility: visible;
+                    opacity: 1;
+                    transform: none;
+                    pointer-events: auto;
+                    width: 100%;
+                    background: #fff;
+                    box-shadow: none;
+                    border-radius: 0;
+                    padding: 0;
+                }
+                .nav-menu a {
+                    padding: 10px 0;
+                }
+            }
+        </style>
+    </noscript>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWGNFN9YBJ"></script>
     <script>
@@ -23,146 +73,196 @@
     gtag('js', new Date());
     gtag('config', 'G-EWGNFN9YBJ');
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "合同会社アーデルハイト",
+        "alternateName": "Adelheit LLC",
+        "url": "https://adelheit-studio.com/",
+        "logo": "https://adelheit-studio.com/logo.png",
+        "description": "常識を超えるスマートフォンゲームを開発するインディーゲームスタジオです。",
+        "foundingDate": "2026-04-07",
+        "address": {
+            "@type": "PostalAddress",
+            "postalCode": "270-2212",
+            "addressRegion": "千葉県",
+            "addressLocality": "松戸市",
+            "streetAddress": "五香南1丁目3番地の22",
+            "extendedAddress": "東急ドエル・アルス松戸元山409号",
+            "addressCountry": "JP"
+        }
+    }
+    </script>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">本文へスキップ</a>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
     <header>
         <div class="logo">
             <a href="/">
-                <img src="logo.png" alt="合同会社アーデルハイト">
+                <picture>
+                    <source srcset="logo.webp" type="image/webp">
+                    <img src="logo.png" alt="合同会社アーデルハイト" width="595" height="593">
+                </picture>
             </a>
         </div>
 
-        <button class="burger-btn" aria-label="メニューを開く">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="burger-btn" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </button>
 
-        <ul class="nav-menu">
-            <li><a href="/" class="active">ホーム</a></li>
-            <li><a href="business.html">事業内容</a></li>
-            <li><a href="news.html">お知らせ</a></li>
-            <li><a href="company.html">会社情報</a></li>
-        </ul>
-    </header>
-
-    <div class="main-visual">
-        <img src="94571.jpg" alt="アーデルハイト メインビジュアル">
-        <div class="main-visual-overlay"></div>
-
-        <div class="catchphrase">
-            <span class="catchphrase-badge">INDIE GAME STUDIO</span>
-            <h2>遊び心を、無限の形に。</h2>
-            <p>常識を超えるスマートフォンゲーム開発スタジオ</p>
-        </div>
-    </div>
-
-    <div class="pixel-brand-section">
-        <div class="pixel-grid-overlay"></div>
-        <div class="pixel-content">
-            <div class="pixel-text" data-text="Adelheit">Adelheit</div>
-            <div>
-                <a href="#main-content" class="pixel-sub">▶ PRESS START TO ENTER ◀</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="container" id="main-content">
-        <section class="section-block reveal">
-            <div class="section-header">
-                <span class="section-en">FEATURED PROJECT</span>
-                <h2 class="section-title">ピックアップ</h2>
-            </div>
-            <div class="pickup-banner">
-                <a href="business.html">
-                    <div class="pickup-image-wrap">
-                        <img src="94576.jpg" alt="Ping-pong Dash 開発中">
-                    </div>
-                    <div class="pickup-caption">
-                        <div class="pickup-caption-left">
-                            <span class="status-pill"><span class="pulse-dot"></span>NOW IN DEVELOPMENT</span>
-                            <span class="pickup-game-name">Ping-pong Dash</span>
-                        </div>
-                        <span class="pickup-more">詳細を見る →</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <section class="section-block reveal">
-            <div class="section-header">
-                <span class="section-en">OUR PHILOSOPHY</span>
-                <h2 class="section-title">私たちのこだわり</h2>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-num">01</div>
-                    <div class="feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                        </svg>
-                    </div>
-                    <h3>アルゴリズム × 遊び</h3>
-                    <p>手続き型生成（Procedural Generation）などの数理アルゴリズムをゲームコアに組み込み、遊ぶたびに新鮮な体験を生み出します。</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-num">02</div>
-                    <div class="feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="6" width="20" height="12" rx="6"></rect>
-                            <path d="M6 12h4M8 10v4"></path>
-                            <circle cx="15" cy="11" r="1" fill="currentColor"></circle>
-                            <circle cx="18" cy="13" r="1" fill="currentColor"></circle>
-                        </svg>
-                    </div>
-                    <h3>直感的で爽快な操作感</h3>
-                    <p>スマートフォンのタッチ操作に最適化された、指先ひとつで熱中できるハイスピード＆レスポンシブな手触りを追求します。</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-num">03</div>
-                    <div class="feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
-                            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
-                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
-                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
-                        </svg>
-                    </div>
-                    <h3>常識にとらわれない挑戦</h3>
-                    <p>少人数スタジオならではの機動力と独創性を活かし、既存の枠組みにとらわれない新しいゲームジャンルを切り拓きます。</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-block reveal">
-            <div class="section-header-row">
-                <div class="section-header">
-                    <span class="section-en">LATEST NEWS</span>
-                    <h2 class="section-title">お知らせ</h2>
-                </div>
-                <a href="news.html" class="view-all-link">一覧を見る →</a>
-            </div>
-            <ul class="news-list" data-nosnippet>
-                <li>
-                    <span class="news-category">お知らせ</span>
-                    <a href="news.html" class="news-title">公式サイトを開設しました</a>
-                </li>
-            </ul>
-        </section>
-    </div>
-
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">Adelheit LLC</div>
-            <ul class="footer-nav">
-                <li><a href="/">ホーム</a></li>
+        <nav class="global-nav" aria-label="メインナビゲーション">
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/" class="active" aria-current="page">ホーム</a></li>
                 <li><a href="business.html">事業内容</a></li>
                 <li><a href="news.html">お知らせ</a></li>
                 <li><a href="company.html">会社情報</a></li>
             </ul>
+        </nav>
+
+        <div class="nav-backdrop" aria-hidden="true"></div>
+    </header>
+
+    <main>
+        <h1 class="visually-hidden">合同会社アーデルハイト | Adelheit LLC</h1>
+
+        <div class="main-visual">
+            <picture>
+                <source type="image/webp" srcset="94571-800.webp 800w, 94571-1200.webp 1200w, 94571.webp 1713w" sizes="100vw">
+                <img src="94571.jpg" alt="アーデルハイト メインビジュアル" width="1713" height="956" fetchpriority="high" decoding="async">
+            </picture>
+            <div class="main-visual-overlay"></div>
+
+            <div class="catchphrase">
+                <span class="catchphrase-badge">INDIE GAME STUDIO</span>
+                <h2>遊び心を、無限の形に。</h2>
+                <p>常識を超えるスマートフォンゲーム開発スタジオ</p>
+            </div>
+        </div>
+
+        <div class="pixel-brand-section">
+            <div class="pixel-grid-overlay"></div>
+            <div class="pixel-content">
+                <div class="pixel-text" data-text="Adelheit">Adelheit</div>
+                <div>
+                    <a href="#main-content" class="pixel-sub">▶ PRESS START TO ENTER ◀</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="main-content">
+            <section class="section-block reveal">
+                <div class="section-header">
+                    <span class="section-en">FEATURED PROJECT</span>
+                    <h2 class="section-title">ピックアップ</h2>
+                </div>
+                <div class="pickup-banner">
+                    <a href="business.html">
+                        <div class="pickup-image-wrap">
+                            <picture>
+                                <source srcset="94576.webp" type="image/webp">
+                                <img src="94576.jpg" alt="Ping-pong Dash 開発中" width="785" height="947" loading="lazy" decoding="async">
+                            </picture>
+                        </div>
+                        <div class="pickup-caption">
+                            <div class="pickup-caption-left">
+                                <span class="status-pill"><span class="pulse-dot" aria-hidden="true"></span>NOW IN DEVELOPMENT</span>
+                                <span class="pickup-game-name">Ping-pong Dash</span>
+                            </div>
+                            <span class="pickup-more">詳細を見る →</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="section-block reveal">
+                <div class="section-header">
+                    <span class="section-en">OUR PHILOSOPHY</span>
+                    <h2 class="section-title">私たちのこだわり</h2>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card reveal">
+                        <div class="feature-num">01</div>
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                        </div>
+                        <h3>アルゴリズム × 遊び</h3>
+                        <p>手続き型生成（Procedural Generation）などの数理アルゴリズムをゲームコアに組み込み、遊ぶたびに新鮮な体験を生み出します。</p>
+                    </div>
+                    <div class="feature-card reveal">
+                        <div class="feature-num">02</div>
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="6" width="20" height="12" rx="6"></rect>
+                                <path d="M6 12h4M8 10v4"></path>
+                                <circle cx="15" cy="11" r="1" fill="currentColor"></circle>
+                                <circle cx="18" cy="13" r="1" fill="currentColor"></circle>
+                            </svg>
+                        </div>
+                        <h3>直感的で爽快な操作感</h3>
+                        <p>スマートフォンのタッチ操作に最適化された、指先ひとつで熱中できるハイスピード＆レスポンシブな手触りを追求します。</p>
+                    </div>
+                    <div class="feature-card reveal">
+                        <div class="feature-num">03</div>
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                            </svg>
+                        </div>
+                        <h3>常識にとらわれない挑戦</h3>
+                        <p>少人数スタジオならではの機動力と独創性を活かし、既存の枠組みにとらわれない新しいゲームジャンルを切り拓きます。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-block reveal">
+                <div class="section-header-row">
+                    <div class="section-header">
+                        <span class="section-en">LATEST NEWS</span>
+                        <h2 class="section-title">お知らせ</h2>
+                    </div>
+                    <a href="news.html" class="view-all-link">一覧を見る →</a>
+                </div>
+                <ul class="news-list" data-nosnippet>
+                    <li>
+                        <span class="news-category">お知らせ</span>
+                        <a href="news.html" class="news-title">公式サイトを開設しました</a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">Adelheit LLC</div>
+            <nav aria-label="フッターナビゲーション">
+                <ul class="footer-nav">
+                    <li><a href="/">ホーム</a></li>
+                    <li><a href="business.html">事業内容</a></li>
+                    <li><a href="news.html">お知らせ</a></li>
+                    <li><a href="company.html">会社情報</a></li>
+                </ul>
+            </nav>
             <div class="footer-copy">&copy; 2026 Adelheit LLC. All Rights Reserved.</div>
         </div>
     </footer>
+
+    <button class="back-to-top" type="button" aria-label="ページの先頭へ戻る">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5"></path>
+            <path d="m5 12 7-7 7 7"></path>
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>
