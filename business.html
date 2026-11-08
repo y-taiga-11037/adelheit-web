@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <noscript>
         <style>
@@ -115,12 +115,17 @@
 
         <nav class="global-nav" aria-label="メインナビゲーション">
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="/">ホーム</a></li>
-                <li><a href="business.html" class="active" aria-current="page">事業内容</a></li>
-                <li><a href="news.html">お知らせ</a></li>
-                <li><a href="company.html">会社情報</a></li>
+                <li><a href="/"><span class="nav-code">01 // HOME</span><span class="nav-sub">ホーム</span></a></li>
+                <li><a href="business.html" class="active" aria-current="page"><span class="nav-code">02 // SERVICES</span><span class="nav-sub">事業内容</span></a></li>
+                <li><a href="news.html"><span class="nav-code">03 // NEWS</span><span class="nav-sub">お知らせ</span></a></li>
+                <li><a href="company.html"><span class="nav-code">04 // COMPANY</span><span class="nav-sub">会社情報</span></a></li>
             </ul>
         </nav>
+
+        <div class="hud-status" aria-label="システムステータス: オンライン">
+            <span class="hud-pulse" aria-hidden="true"></span>
+            <span class="hud-status-text">SYS.STATUS: ONLINE</span>
+        </div>
 
         <div class="nav-backdrop" aria-hidden="true"></div>
     </header>
@@ -133,6 +138,11 @@
             </div>
 
             <div class="game-card reveal">
+                <div class="project-hud-bar">
+                    <span class="project-hud-id">PROJECT_ID: PPD-001</span>
+                    <span class="project-hud-tag">[ STATUS: IN DEVELOPMENT // 開発中 ]</span>
+                    <span class="project-hud-sec">SECURITY: RESTRICTED</span>
+                </div>
                 <div class="game-card-visual">
                     <picture>
                         <source srcset="94576.webp" type="image/webp">
@@ -141,7 +151,7 @@
                 </div>
                 <div class="game-card-content">
                     <div style="margin-bottom: 12px;">
-                        <span class="status-pill status-pill-light"><span class="pulse-dot" aria-hidden="true"></span>開発中 / Prototype</span>
+                        <span class="status-pill status-pill-warning"><span class="pulse-dot" aria-hidden="true"></span>[ STATUS: IN DEVELOPMENT // 開発中 ]</span>
                     </div>
                     <div class="game-title-row">
                         <h2>Ping-pong Dash</h2>

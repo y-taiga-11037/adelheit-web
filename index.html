@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <noscript>
         <style>
@@ -117,12 +117,17 @@
 
         <nav class="global-nav" aria-label="メインナビゲーション">
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="/" class="active" aria-current="page">ホーム</a></li>
-                <li><a href="business.html">事業内容</a></li>
-                <li><a href="news.html">お知らせ</a></li>
-                <li><a href="company.html">会社情報</a></li>
+                <li><a href="/" class="active" aria-current="page"><span class="nav-code">01 // HOME</span><span class="nav-sub">ホーム</span></a></li>
+                <li><a href="business.html"><span class="nav-code">02 // SERVICES</span><span class="nav-sub">事業内容</span></a></li>
+                <li><a href="news.html"><span class="nav-code">03 // NEWS</span><span class="nav-sub">お知らせ</span></a></li>
+                <li><a href="company.html"><span class="nav-code">04 // COMPANY</span><span class="nav-sub">会社情報</span></a></li>
             </ul>
         </nav>
+
+        <div class="hud-status" aria-label="システムステータス: オンライン">
+            <span class="hud-pulse" aria-hidden="true"></span>
+            <span class="hud-status-text">SYS.STATUS: ONLINE</span>
+        </div>
 
         <div class="nav-backdrop" aria-hidden="true"></div>
     </header>
@@ -138,6 +143,7 @@
             <div class="main-visual-overlay"></div>
 
             <div class="catchphrase">
+                <span class="catchphrase-bg-text" aria-hidden="true">INFINITE PLAYFULNESS</span>
                 <span class="catchphrase-badge">INDIE GAME STUDIO</span>
                 <h2>遊び心を、無限の形に。</h2>
                 <p>常識を超えるスマートフォンゲーム開発スタジオ</p>
@@ -148,8 +154,8 @@
             <div class="pixel-grid-overlay"></div>
             <div class="pixel-content">
                 <div class="pixel-text" data-text="Adelheit">Adelheit</div>
-                <div>
-                    <a href="#main-content" class="pixel-sub">▶ PRESS START TO ENTER ◀</a>
+                <div class="press-start-wrap">
+                    <a href="#main-content" class="press-start-btn">▶ PRESS START TO ENTER ◀</a>
                 </div>
             </div>
         </div>
@@ -162,6 +168,10 @@
                 </div>
                 <div class="pickup-banner">
                     <a href="business.html">
+                        <div class="pickup-hud-bar">
+                            <span class="hud-mono">PROJECT_ID: PPD-001</span>
+                            <span class="hud-mono hud-classified">[ CLASSIFIED // 機密 ]</span>
+                        </div>
                         <div class="pickup-image-wrap">
                             <picture>
                                 <source srcset="94576.webp" type="image/webp">
@@ -170,10 +180,10 @@
                         </div>
                         <div class="pickup-caption">
                             <div class="pickup-caption-left">
-                                <span class="status-pill"><span class="pulse-dot" aria-hidden="true"></span>NOW IN DEVELOPMENT</span>
+                                <span class="status-pill status-pill-warning"><span class="pulse-dot" aria-hidden="true"></span>[ STATUS: IN DEVELOPMENT // 開発中 ]</span>
                                 <span class="pickup-game-name">Ping-pong Dash</span>
                             </div>
-                            <span class="pickup-more">詳細を見る →</span>
+                            <span class="pickup-more">ACCESS PROJECT DATA →</span>
                         </div>
                     </a>
                 </div>
@@ -227,17 +237,32 @@
             <section class="section-block reveal">
                 <div class="section-header-row">
                     <div class="section-header">
-                        <span class="section-en">LATEST NEWS</span>
-                        <h2 class="section-title">お知らせ</h2>
+                        <span class="section-en">SYSTEM LOGS</span>
+                        <h2 class="section-title">お知らせ <span class="section-title-sub">// SYSTEM_LOGS</span></h2>
                     </div>
-                    <a href="news.html" class="view-all-link">一覧を見る →</a>
+                    <a href="news.html" class="view-all-link">VIEW ALL LOGS →</a>
                 </div>
-                <ul class="news-list" data-nosnippet>
-                    <li>
-                        <span class="news-category">お知らせ</span>
-                        <a href="news.html" class="news-title">公式サイトを開設しました</a>
-                    </li>
-                </ul>
+                <div class="terminal-console" data-nosnippet>
+                    <div class="terminal-header">
+                        <div class="terminal-dots" aria-hidden="true">
+                            <span class="terminal-dot dot-red"></span>
+                            <span class="terminal-dot dot-yellow"></span>
+                            <span class="terminal-dot dot-green"></span>
+                        </div>
+                        <span class="terminal-title">SYS_LOG // TERMINAL [CONNECTED]</span>
+                        <span class="terminal-host">adelheit-core:~$</span>
+                    </div>
+                    <div class="terminal-body">
+                        <ul class="terminal-list">
+                            <li class="terminal-item">
+                                <span class="terminal-prompt">&gt; [LOG]</span>
+                                <span class="terminal-badge">INFO</span>
+                                <a href="news.html" class="terminal-msg">公式サイトを開設しました</a>
+                                <span class="terminal-cursor" aria-hidden="true">█</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
