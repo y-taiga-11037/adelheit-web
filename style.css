@@ -480,61 +480,135 @@ footer {
     .catchphrase p {
         font-size: 0.8rem;
     }
-/* --- 【背景変化・静止ドットロゴ版】 --- */
-
-.pixel-brand-section {
-    /* 背景がゆっくり変わるアニメーション */
-    background: linear-gradient(135deg, #ffffff, #f0f4f8, #e6e6fa, #f0f4f8);
-    background-size: 400% 400%;
-    animation: gradient-bg 15s ease infinite;
-
-    padding: 100px 20px;
-    text-align: center;
-    overflow: hidden;
+    .pixel-text {
+        font-size: 2.2rem;
+    }
+    .pixel-sub {
+        font-size: 1rem;
+    }
 }
 
-.pixel-text {
+/* ================================================== */
+/* ★リッチ化対応（2026-11） */
+/* ================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- ① ヘッダーのすりガラス化 --- */
+header {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+header.is-scrolled {
+    background-color: rgba(250, 250, 250, 0.78);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(12px) saturate(160%);
+    box-shadow: 0 4px 20px rgba(17, 21, 28, 0.06);
+}
+
+/* --- ② メインビジュアル：ゆっくりズーム ＋ グラデーション --- */
+.main-visual {
+    overflow: hidden;
+}
+.main-visual img {
+    animation: ken-burns 14s ease-out forwards;
+    transform-origin: 50% 40%;
+}
+.main-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.45) 100%),
+        linear-gradient(180deg, rgba(10, 20, 50, 0.15) 0%, rgba(10, 20, 50, 0.55) 100%);
+    pointer-events: none;
+}
+.catchphrase {
+    z-index: 2;
+}
+.catchphrase h2,
+.catchphrase p,
+.catchphrase-badge {
+    opacity: 0;
+    animation: rise-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.catchphrase-badge {
     display: inline-block;
     font-family: 'DotGothic16', sans-serif;
-    font-size: 4rem;
-    color: #0000ff; /* 原色の青 */
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: #fff;
+    padding: 6px 16px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    animation-delay: 0.2s;
+}
+.catchphrase h2 {
+    animation-delay: 0.45s;
+}
+.catchphrase p {
+    animation-delay: 0.7s;
+}
+
+@keyframes ken-burns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.07); }
+}
+@keyframes rise-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ③ ドット絵セクション：グリッド＋走査線＋点滅ボタン --- */
+.pixel-brand-section {
     position: relative;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-    /* steps(8) でカクカク打ち出し。タイピング中だけグリッチを混ぜる */
+}
+.pixel-grid-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(rgba(0, 0, 255, 0.12) 1px, transparent 1px),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.025) 0px, rgba(0, 0, 0, 0.025) 1px, transparent 1px, transparent 4px);
+    background-size: 16px 16px, 100% 4px;
+}
+.pixel-content {
+    position: relative;
+    z-index: 1;
+}
+a.pixel-sub {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 20px;
+    padding: 10px 24px;
+    border-radius: 999px;
+    color: #d600b8;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(214, 0, 184, 0.35);
+    box-shadow: 0 4px 16px rgba(214, 0, 184, 0.12);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     animation:
-        typing-adel 1.5s steps(8, end) forwards,
-        glitch-vivid 1.5s step-end; /* タイピングと同じ時間だけ揺らす */
+        fadeIn-vivid 0.3s ease forwards 1.8s,
+        blink-start 1.6s ease-in-out infinite 2.2s;
 }
-
-.pixel-sub {
-    font-family: 'DotGothic16', sans-serif;
-    color: #ff00ff; /* 原色のマゼンタ */
-    margin-top: 15px;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
-    opacity: 0;
-    animation: fadeIn-vivid 0.3s ease forwards 1.8s;
+a.pixel-sub:hover {
+    color: #ffffff;
+    background: linear-gradient(90deg, #0000ff, #d600b8);
+    border-color: transparent;
+    transform: translateY(-2px);
+    animation: none;
+    opacity: 1;
 }
-
-/* --- アニメーションの定義 --- */
-
-/* 背景がゆっくり動く動き */
-@keyframes gradient-bg {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes blink-start {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.45; }
 }
-
-/* 8文字タイピング */
-@keyframes typing-adel {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-/* タイピング中のみ発生するノイズ（1.5秒で止まるように設定） */
+/* グリッチを少し長めに */
 @keyframes glitch-vivid {
     0%, 100% { text-shadow: none; transform: translate(0); }
     20% { text-shadow: 4px 0 #ff0000, -4px 0 #00ff00; transform: translate(3px, -2px); }
@@ -542,14 +616,414 @@ footer {
     60% { text-shadow: 4px 0 #ff0000, -4px 0 #00ff00; transform: translate(2px, -1px); }
 }
 
-@keyframes fadeIn-vivid {
-    to { opacity: 1; }
+/* --- ④ Scroll Reveal --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.feature-grid .feature-card.reveal:nth-child(2) { transition-delay: 0.12s; }
+.feature-grid .feature-card.reveal:nth-child(3) { transition-delay: 0.24s; }
+
+/* --- セクション見出し（英字ラベル付き） --- */
+.section-block {
+    margin-bottom: 80px;
+}
+.section-header .section-en {
+    display: block;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: #d600b8;
+    margin-bottom: 4px;
+}
+.section-header h2.section-title {
+    border-bottom: none;
+    position: relative;
+    padding-bottom: 14px;
+}
+.section-header h2.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 64px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #0000ff, #ff00ff);
+}
+.section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.view-all-link {
+    color: #0056b3;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transition: transform 0.2s;
+}
+.view-all-link:hover {
+    transform: translateX(4px);
 }
 
-/* スマホ用調整 */
+/* --- ピックアップバナー：カード下部バー（画像文字と重ならない設計） --- */
+.pickup-banner {
+    background: #ffffff;
+    border: 1px solid #eef0f4;
+}
+.pickup-banner a {
+    display: block;
+    text-decoration: none;
+}
+.pickup-image-wrap {
+    overflow: hidden;
+    background: #000;
+}
+.pickup-banner img {
+    transition: transform 0.6s ease;
+}
+.pickup-banner:hover img {
+    transform: scale(1.03);
+}
+.pickup-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 24px;
+    background: #ffffff;
+    border-top: 1px solid #eef0f4;
+}
+.pickup-caption-left {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.pickup-game-name {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #2c3e50;
+}
+.pickup-more {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #0056b3;
+    white-space: nowrap;
+    transition: transform 0.2s ease;
+}
+.pickup-banner:hover .pickup-more {
+    transform: translateX(4px);
+}
+
+/* --- ステータスピル（開発中バッジ） --- */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: #1a2433;
+    background: #f0f4fa;
+    border: 1px solid #dce4f2;
+    padding: 5px 12px;
+    border-radius: 999px;
+}
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #16a34a;
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.65);
+    animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.65); }
+    70%  { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+}
+
+/* --- ⑥ こだわり（3カラム ＋ ベクターアイコン） --- */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.feature-card {
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    padding: 32px 24px 28px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef0f4;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0000ff, #ff00ff);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 80, 0.1);
+}
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+.feature-num {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 2.4rem;
+    color: rgba(0, 0, 255, 0.07);
+}
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #eef3ff 0%, #f8ecff 100%);
+    color: #0056b3;
+    margin-bottom: 18px;
+}
+.feature-icon svg {
+    width: 24px;
+    height: 24px;
+}
+.feature-card h3 {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin: 0 0 10px;
+}
+.feature-card p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+}
+
+/* --- お知らせ --- */
+a.news-title {
+    font-weight: bold;
+}
+.news-card-wrap {
+    background: #fff;
+    border-radius: 12px;
+    padding: 8px 28px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+.news-card-wrap .news-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- ⑤ ゲームカード（business.html） --- */
+.game-card {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 50, 0.08);
+    border: 1px solid #eef0f4;
+}
+.game-card-visual {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+.game-card-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+}
+.game-card:hover .game-card-visual img {
+    transform: scale(1.03);
+}
+.game-card-content {
+    padding: 32px 36px 36px;
+}
+.game-title-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.game-title-row h3 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+.game-sub-en {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: #d600b8;
+}
+.game-specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 28px 0;
+}
+.spec-item {
+    background: #f6f8fc;
+    border: 1px solid #e8ecf4;
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+.spec-label {
+    display: block;
+    font-size: 0.72rem;
+    color: #8a94a5;
+    margin-bottom: 4px;
+}
+.spec-value {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 0.88rem;
+}
+.dev-progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: #4a5568;
+    margin-bottom: 8px;
+}
+.dev-percent {
+    color: #0000ff;
+}
+.dev-progress-bar {
+    height: 14px;
+    background: #e8ecf4;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 2px;
+}
+.dev-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: repeating-linear-gradient(90deg, #0000ff 0 10px, #3b3bff 10px 12px);
+    transform-origin: left;
+    animation: progress-grow 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+@keyframes progress-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+/* --- 会社概要テーブル --- */
+.company-table {
+    overflow: hidden;
+    border-radius: 12px;
+}
+.company-table tr:last-child th,
+.company-table tr:last-child td {
+    border-bottom: none;
+}
+.company-table th {
+    border-left: 4px solid #0056b3;
+}
+
+/* --- フッター（日本語フォントが確実に当たるよう修正） --- */
+footer {
+    font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+}
+.footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+.footer-brand {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.2em;
+    color: #fff;
+}
+.footer-nav {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 24px;
+    margin: 0;
+    padding: 0;
+}
+.footer-nav a {
+    color: #9aa5b6;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.footer-nav a:hover {
+    color: #fff;
+}
+
+/* --- スマホ調整（リッチ化分） --- */
 @media (max-width: 767px) {
-    .pixel-text {
-        font-size: 2.2rem;
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    .game-specs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .game-card-content {
+        padding: 24px 20px 28px;
+    }
+    .game-title-row h3 {
+        font-size: 1.4rem;
+    }
+    .catchphrase-badge {
+        font-size: 0.65rem;
+        margin-bottom: 8px;
+        padding: 4px 10px;
+    }
+    .pickup-caption {
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .status-pill {
+        font-size: 0.7rem;
+    }
+    .news-card-wrap {
+        padding: 4px 18px;
+    }
+    .section-block {
+        margin-bottom: 60px;
     }
 }
+
+/* 動きを減らす設定のユーザーにはアニメーションを控える */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
 }
