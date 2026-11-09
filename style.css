@@ -132,6 +132,17 @@ header {
 .logo picture {
     display: block;
     height: 100%;
+    transition: opacity 0.23s ease-in-out;
+}
+/* スクロールしてロゴが小さくなったら白文字版へクロスフェード */
+.logo .logo-light {
+    opacity: 0;
+}
+header.is-scrolled .logo .logo-default {
+    opacity: 0;
+}
+header.is-scrolled .logo .logo-light {
+    opacity: 1;
 }
 .logo img {
     /* ★赤線に合わせて特大サイズに変更！（※もしこれでも小さければ300pxなどに上げてください） */
